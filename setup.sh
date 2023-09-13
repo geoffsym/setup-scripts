@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# copy settings
+echo ""
+echo "---------------------"
+echo " copying settings... "
+echo "---------------------"
+
+dconf load / < dconf-settings.ini
+cp .gitconfig $HOME
+
 # install prerequisites
 echo ""
 echo "-----------------------------"

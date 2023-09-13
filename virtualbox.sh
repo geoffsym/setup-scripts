@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# copy settings
-echo ""
-echo "---------------------"
-echo " copying settings... "
-echo "---------------------"
-
-dconf load / < dconf-settings.ini
-cp .gitconfig $HOME
-
 # set up shared directory
 # https://www.linuxbabe.com/virtualbox/how-to-enable-file-sharing-between-host-and-virtualbox-guest-os
 echo ""
