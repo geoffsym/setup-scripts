@@ -2,7 +2,7 @@
 
 # check if the reboot flag file exists.
 # We created this file before rebooting.
-if [ ! -f /var/run/resume-script ]; then
+if [ ! -f ~/.resume-script ]; then
     # install prerequisites
     echo ""
     echo "-----------------------------"
@@ -22,31 +22,28 @@ if [ ! -f /var/run/resume-script ]; then
     cd /media/$USER/VBox_GAs_*
     sh /media/$USER/VBox_GAs_*/autorun.sh
 
-    # Preparation for reboot
-    script="sh $0"
-
-    # add this script to zsh so it gets triggered immediately after reboot
-    # change it to .bashrc if using bash shell
-    echo "$script" >>~/.zshrc
+    # add this script to bashrc so it gets triggered immediately after reboot
+    echo "bash $PWD/$0" >>~/.bashrc
 
     # create a flag file to check if we are resuming from reboot.
-    sudo touch /var/run/resume-script
+    sudo touch ~/.resume-script
 
     echo ""
     echo "--------------"
     echo " rebooting... "
     echo "--------------"
 
+    wait 2
     reboot
 
 else
     echo "resuming script after reboot.."
 
     # Remove the line that we added in zshrc
-    sed -i '/sh/d' ~/.zshrc
+    sed -i '/bash/d' ~/.bashrc
 
     # remove the temporary file that we created to check for reboot
-    sudo rm -f /var/run/resume-script
+    sudo rm -f ~/.resume-script
 
     # continue with rest of the script
 
@@ -65,5 +62,6 @@ else
     echo " rebooting again... "
     echo "--------------------"
 
+    wait 2
     reboot
 fi
