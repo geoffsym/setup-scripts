@@ -23,7 +23,7 @@ if [ ! -f /var/run/resume-script ]; then
     sh /media/$USER/VBox_GAs_*/autorun.sh
 
     # Preparation for reboot
-    script="bash /reload_bash_shell.sh"
+    script="sh $0"
 
     # add this script to zsh so it gets triggered immediately after reboot
     # change it to .bashrc if using bash shell
@@ -43,7 +43,7 @@ else
     echo "resuming script after reboot.."
 
     # Remove the line that we added in zshrc
-    sed -i '/bash/d' ~/.zshrc
+    sed -i '/sh/d' ~/.zshrc
 
     # remove the temporary file that we created to check for reboot
     sudo rm -f /var/run/resume-script
