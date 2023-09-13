@@ -8,7 +8,7 @@ if [ ! -f /var/run/resume-after-reboot ]; then
     # run your scripts here
 
     # Preparation for reboot
-    script="bash $0"
+    script="bash $filepath"
 
     # add this script to zsh so it gets triggered immediately after reboot
     # change it to .bashrc if using bash shell
@@ -18,7 +18,7 @@ if [ ! -f /var/run/resume-after-reboot ]; then
     sudo touch /var/run/resume-after-reboot
 
     echo "rebooting.."
-    # reboot here
+    sudo reboot
 
 else
     echo "resuming script after reboot.."

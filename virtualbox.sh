@@ -11,7 +11,7 @@ if [ ! -f /var/run/resume-script ]; then
 
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y build-essential dkms gcc make perl
+    sudo apt install -y build-essential dkms gcc make perl zsh
 
     # run guest additions script
     echo ""
