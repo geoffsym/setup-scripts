@@ -6,7 +6,7 @@ echo "---------------------"
 echo " copying settings... "
 echo "---------------------"
 
-dconf load / < dconf-settings.ini
+dconf load / <dconf-settings.ini
 cp .gitconfig $HOME
 
 # install prerequisites
@@ -29,10 +29,10 @@ echo " installing asdf... "
 echo "--------------------"
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
-echo '' >> ~/.bashrc
-echo '# enable asdf' >> ~/.bashrc
-echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
-echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
+echo '' >>~/.bashrc
+echo '# enable asdf' >>~/.bashrc
+echo '. "$HOME/.asdf/asdf.sh"' >>~/.bashrc
+echo '. "$HOME/.asdf/completions/asdf.bash"' >>~/.bashrc
 . ~/.bashrc
 
 # install python
@@ -64,10 +64,10 @@ echo "-----------------------"
 echo " installing mongoDB... "
 echo "-----------------------"
 
-curl -fsSL https://pgp.mongodb.com/server-7.0.asc \
-    | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" \
-    | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc |
+    sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" |
+    sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 sudo apt update
 sudo apt install -y mongodb-org
 sudo systemctl enable mongod
@@ -83,8 +83,8 @@ echo "----------------------"
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
-echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" \
-    | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |
+    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $USER
@@ -106,4 +106,4 @@ sudo snap install --classic code
 sudo snap install postman
 
 # update and reboot
-sh update.sh
+bash update.sh

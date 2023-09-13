@@ -18,4 +18,4 @@ echo "--------------"
 echo " rebooting... "
 echo "--------------"
 
-reboot
+sudo reboot

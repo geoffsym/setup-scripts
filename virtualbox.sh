@@ -27,7 +27,7 @@ if [ ! -f ~/.resume-script ]; then
     echo "-----------------------------------"
 
     cd /media/$USER/VBox_GAs_*
-    sh /media/$USER/VBox_GAs_*/autorun.sh
+    bash /media/$USER/VBox_GAs_*/autorun.sh
 
     echo ""
     echo "--------------------------"
@@ -35,7 +35,7 @@ if [ ! -f ~/.resume-script ]; then
     echo "--------------------------"
 
     read REPLY
-    reboot
+    sudo reboot
 
 else
 
@@ -58,10 +58,10 @@ else
     ln -s /media/sf_shared $HOME/shared
 
     echo ""
-    echo "--------------------"
-    echo " rebooting again... "
-    echo "--------------------"
+    echo "--------------------------"
+    echo " press enter to reboot... "
+    echo "--------------------------"
 
-    sleep 5
-    reboot
+    read REPLY
+    sudo reboot
 fi
