@@ -3,7 +3,7 @@ echo "echo \"Post-reboot content goes here\"
  
 #remove this from running at startup
 rm ~/.config/autostart/myScript.desktop
-rm /home/$USER/myScript.sh" >>/home/$USER/myScript.sh
+rm /home/$SUDO_USER/myScript.sh" >>/home/$SUDO_USER/myScript.sh
 
 #make file executable
 chmod +x ~/myScript.sh
@@ -14,7 +14,7 @@ mkdir -p "autostart/"
 cd ..
 echo "[Desktop Entry]
 Type=Application
-Exec=x-terminal-emulator -e sudo /home/$USER/myScript.sh
+Exec=x-terminal-emulator -e sudo /home/$SUDO_USER/myScript.sh
 Name=Testing" >>~/.config/autostart/myScript.desktop
 
 #before reboot
