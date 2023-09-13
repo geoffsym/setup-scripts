@@ -27,15 +27,14 @@ if [ ! -f ~/.resume-script ]; then
     echo "-----------------------------------"
 
     cd /media/$USER/VBox_GAs_*
-    . /media/$USER/VBox_GAs_*/autorun.sh
-    wait
+    sh /media/$USER/VBox_GAs_*/autorun.sh
 
     echo ""
-    echo "--------------"
-    echo " rebooting... "
-    echo "--------------"
+    echo "--------------------------"
+    echo " press enter to reboot... "
+    echo "--------------------------"
 
-    sleep 5
+    read
     reboot
 
 else
