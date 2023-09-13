@@ -1,24 +1,34 @@
-#after reboot
-echo "echo \"Post-reboot content goes here\"
- 
-#remove this from running at startup
-rm ~/.config/autostart/myScript.desktop
-rm /home/$SUDO_USER/myScript.sh" >>/home/$SUDO_USER/myScript.sh
+# filename: test.sh
 
-#make file executable
-chmod +x ~/myScript.sh
+# check if the reboot flag file exists.
+# We created this file before rebooting.
+if [ ! -f /var/run/resume-after-reboot ]; then
+    echo "running script for the first time.."
 
-#set new script to run after reboot
-cd .config/
-mkdir -p "autostart/"
-cd ..
-echo "[Desktop Entry]
-Type=Application
-Exec=x-terminal-emulator -e sudo /home/$SUDO_USER/myScript.sh
-Name=Testing" >>~/.config/autostart/myScript.desktop
+    # run your scripts here
 
-#before reboot
-echo "Pre-reboot commands go here"
-sleep 30
+    # Preparation for reboot
+    script="bash /test.sh"
 
-reboot -f
+    # add this script to zsh so it gets triggered immediately after reboot
+    # change it to .bashrc if using bash shell
+    echo "$script" >>~/.zshrc
+
+    # create a flag file to check if we are resuming from reboot.
+    sudo touch /var/run/resume-after-reboot
+
+    echo "rebooting.."
+    # reboot here
+
+else
+    echo "resuming script after reboot.."
+
+    # Remove the line that we added in zshrc
+    sed -i '/bash/d' ~/.zshrc
+
+    # remove the temporary file that we created to check for reboot
+    sudo rm -f /var/run/resume-after-reboot
+
+    # continue with rest of the script
+    touch ~/test.txt
+fi
