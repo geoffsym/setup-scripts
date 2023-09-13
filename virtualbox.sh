@@ -39,7 +39,7 @@ if [ ! -f ~/.resume-script ]; then
 else
     echo "resuming script after reboot.."
 
-    # Remove the line that we added in zshrc
+    # Remove the line that we added in bashrc
     sed -i '/bash/d' ~/.bashrc
 
     # remove the temporary file that we created to check for reboot
