@@ -34,12 +34,12 @@ if [ ! -f ~/.resume-script ]; then
     echo " press enter to reboot... "
     echo "--------------------------"
 
-    read
+    read -s
     reboot
 
 else
 
-    echo "resuming script after reboot.."
+    echo "resuming script after reboot..."
 
     # Remove the line that we added in bashrc
     sed -i '/bash/d' ~/.bashrc
@@ -54,7 +54,7 @@ else
     echo " setting up shared directory... "
     echo "--------------------------------"
 
-    echo "sudo gpasswd -a $USER vboxsf" | sh
+    sudo gpasswd -a $USER vboxsf
     ln -s /media/sf_shared $HOME/shared
 
     echo ""
