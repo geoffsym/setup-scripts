@@ -2,7 +2,7 @@
 
 # check if the reboot flag file exists.
 # We created this file before rebooting.
-if [ ! -f /var/run/resume-after-reboot ]; then
+if [ ! -f ~/.resume-script ]; then
     echo "running script for the first time.."
 
     # run your scripts here
@@ -14,7 +14,7 @@ if [ ! -f /var/run/resume-after-reboot ]; then
     echo "$script" >>~/.bashrc
 
     # create a flag file to check if we are resuming from reboot.
-    sudo touch /var/run/resume-after-reboot
+    sudo touch ~/.resume-script
 
     echo "rebooting.."
     sudo reboot
@@ -26,7 +26,7 @@ else
     sed -i '/bash/d' ~/.bashrc
 
     # remove the temporary file that we created to check for reboot
-    sudo rm -f /var/run/resume-after-reboot
+    sudo rm -f ~/.resume-script
 
     # continue with rest of the script
     touch ~/test.txt
