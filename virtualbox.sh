@@ -20,7 +20,7 @@ if [ ! -f ~/.resume-script ]; then
     echo "-----------------------------------"
 
     cd /media/$USER/VBox_GAs_*
-    . /media/$USER/VBox_GAs_*/autorun.sh
+    sh /media/$USER/VBox_GAs_*/autorun.sh
 
     # add this script to bashrc so it gets triggered immediately after reboot
     echo "bash $PWD/$0" >>~/.bashrc
