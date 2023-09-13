@@ -29,6 +29,8 @@ echo " installing asdf... "
 echo "--------------------"
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
+echo '' >> ~/.bashrc
+echo '# enable asdf' >> ~/.bashrc
 echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
 . ~/.bashrc
