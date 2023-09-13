@@ -27,7 +27,7 @@ if [ ! -f ~/.resume-script ]; then
     echo "-----------------------------------"
 
     cd /media/$USER/VBox_GAs_*
-    sh /media/$USER/VBox_GAs_*/autorun.sh
+    source /media/$USER/VBox_GAs_*/autorun.sh
     wait
 
     echo ""
