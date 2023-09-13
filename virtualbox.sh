@@ -3,6 +3,13 @@
 # check if the reboot flag file exists.
 # We created this file before rebooting.
 if [ ! -f ~/.resume-script ]; then
+
+    # add this script to bashrc so it gets triggered immediately after reboot
+    echo "bash $PWD/$0" >>~/.bashrc
+
+    # create a flag file to check if we are resuming from reboot.
+    sudo touch ~/.resume-script
+
     # install prerequisites
     echo ""
     echo "-----------------------------"
@@ -23,12 +30,6 @@ if [ ! -f ~/.resume-script ]; then
     sh /media/$USER/VBox_GAs_*/autorun.sh
     wait
 
-    # add this script to bashrc so it gets triggered immediately after reboot
-    echo "bash $PWD/$0" >>~/.bashrc
-
-    # create a flag file to check if we are resuming from reboot.
-    sudo touch ~/.resume-script
-
     echo ""
     echo "--------------"
     echo " rebooting... "
@@ -38,6 +39,7 @@ if [ ! -f ~/.resume-script ]; then
     reboot
 
 else
+
     echo "resuming script after reboot.."
 
     # Remove the line that we added in bashrc
@@ -45,8 +47,6 @@ else
 
     # remove the temporary file that we created to check for reboot
     sudo rm -f ~/.resume-script
-
-    # continue with rest of the script
 
     # set up shared directory
     # https://www.linuxbabe.com/virtualbox/how-to-enable-file-sharing-between-host-and-virtualbox-guest-os
