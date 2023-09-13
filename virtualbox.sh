@@ -34,7 +34,7 @@ if [ ! -f ~/.resume-script ]; then
     echo " press enter to reboot... "
     echo "--------------------------"
 
-    read -s
+    read REPLY
     reboot
 
 else
