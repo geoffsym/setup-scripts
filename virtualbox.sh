@@ -59,5 +59,4 @@ else
     echo "--------------------------------"
 
     sudo gpasswd -a $USER vboxsf
-    ln -s /media/sf_shared $HOME/shared
 fi
