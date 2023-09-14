@@ -6,12 +6,6 @@ script="bash $PWD/$0"
 # We created this file before rebooting.
 if [ ! -f $HOME/.resume-script ]; then
 
-    # add this script to bashrc so it gets triggered immediately after reboot
-    echo "$script" >>$HOME/.bashrc
-
-    # create a flag file to check if we are resuming from reboot.
-    touch $HOME/.resume-script
-
     # install prerequisites
     echo ""
     echo "-----------------------------"
@@ -35,8 +29,14 @@ if [ ! -f $HOME/.resume-script ]; then
     echo "--------------------------"
     echo " press enter to reboot... "
     echo "--------------------------"
-
     read REPLY
+
+    # add this script to bashrc so it gets triggered immediately after reboot
+    echo "$script" >>$HOME/.bashrc
+
+    # create a flag file to check if we are resuming from reboot.
+    touch $HOME/.resume-script
+
     sudo reboot
 
 else
