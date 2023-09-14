@@ -33,7 +33,7 @@ echo '' >>$HOME/.bashrc
 echo '# enable asdf' >>$HOME/.bashrc
 echo '. "$HOME/.asdf/asdf.sh"' >>$HOME/.bashrc
 echo '. "$HOME/.asdf/completions/asdf.bash"' >>$HOME/.bashrc
-source .bashrc
+source $HOME/.bashrc
 
 # install python
 # https://github.com/asdf-community/asdf-python
