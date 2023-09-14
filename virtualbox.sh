@@ -10,7 +10,7 @@ if [ ! -f $HOME/.resume-script ]; then
     echo "$script" >>$HOME/.bashrc
 
     # create a flag file to check if we are resuming from reboot.
-    sudo touch $HOME/.resume-script
+    touch $HOME/.resume-script
 
     # install prerequisites
     echo ""
@@ -44,10 +44,12 @@ else
     echo "resuming script after reboot..."
 
     # Remove the line that we added in bashrc
-    head -n -1 $HOME/.bashrc
+    head -n -1 $HOME/.bashrc >$HOME/.bashrc.tmp
+    cp $HOME/.bashrc.tmp $HOME/.bashrc
+    rm -f $HOME/.bashrc.tmp
 
     # remove the temporary file that we created to check for reboot
-    sudo rm -f $HOME/.resume-script
+    rm -f $HOME/.resume-script
 
     # set up shared directory
     # https://www.linuxbabe.com/virtualbox/how-to-enable-file-sharing-between-host-and-virtualbox-guest-os
