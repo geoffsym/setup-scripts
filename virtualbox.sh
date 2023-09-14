@@ -60,12 +60,4 @@ else
 
     sudo gpasswd -a $USER vboxsf
     ln -s /media/sf_shared $HOME/shared
-
-    echo ""
-    echo "--------------------------"
-    echo " press enter to reboot... "
-    echo "--------------------------"
-
-    read REPLY
-    sudo reboot
 fi
