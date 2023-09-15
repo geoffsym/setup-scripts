@@ -136,6 +136,8 @@ else
     export PATH=$HOME/.local/bin:$PATH
     export MANPATH=$HOME/.local/share/man:$MANPATH
 
+    # git credential manager
+    # https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#install-from-source-helper-script
     cd $HOME
     curl -L https://aka.ms/gcm/linux-install-source.sh | sh
     git-credential-manager configure
