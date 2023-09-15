@@ -14,8 +14,9 @@ npm update --global
 sudo snap refresh
 
 echo ""
-echo "--------------"
-echo " rebooting... "
-echo "--------------"
+echo "--------------------------"
+echo " press enter to reboot... "
+echo "--------------------------"
+read REPLY
 
 sudo reboot

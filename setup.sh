@@ -130,6 +130,12 @@ else
     sudo snap install --classic code
     sudo snap install postman
 
+    # d2 lang
+    # https://github.com/terrastruct/d2#install
+    curl -fsSL https://d2lang.com/install.sh | sh -s --
+    export PATH=$HOME/.local/bin:$PATH
+    export MANPATH=$HOME/.local/share/man:$MANPATH
+
     cd $HOME
     curl -L https://aka.ms/gcm/linux-install-source.sh | sh
     git-credential-manager configure
