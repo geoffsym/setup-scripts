@@ -59,8 +59,9 @@ else
     echo "----------------------"
 
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
-    asdf install java latest
-    asdf global java latest
+    asdf install java latest:adoptopenjdk-20
+    asdf global java latest:adoptopenjdk-20
+    . ~/.asdf/plugins/java/set-java-home.bash
 
     # install python
     # https://github.com/asdf-community/asdf-python
