@@ -180,6 +180,9 @@ else
     curl -L https://aka.ms/gcm/linux-install-source.sh | sh
     git-credential-manager configure
     git config --global credential.credentialStore gpg
+    gpg --gen-key
+    fingerprint=$(gpg --list-keys --with-colons | grep "pub" | cut -d':' -f5)
+    pass init $fingerprint
 
     # copy settings
     echo ""
