@@ -165,6 +165,7 @@ else
     cd $HOME
     curl -L https://aka.ms/gcm/linux-install-source.sh | sh
     git-credential-manager configure
+    export GCM_CREDENTIAL_STORE=gpg
 
     # copy settings
     echo ""
