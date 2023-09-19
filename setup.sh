@@ -5,16 +5,6 @@ script="bash $PWD/$0"
 # check if the reboot flag file exists.
 # We created this file before rebooting.
 if [ ! -f $HOME/.resume-script ]; then
-
-    # copy settings
-    echo ""
-    echo "---------------------"
-    echo " copying settings... "
-    echo "---------------------"
-
-    dconf load / <dconf-settings.ini
-    cp .gitconfig $HOME
-
     # install prerequisites
     echo ""
     echo "-----------------------------"
@@ -129,6 +119,15 @@ else
     npm install --global nodemon npx
     sudo snap install --classic code
     sudo snap install postman
+
+    # copy settings
+    echo ""
+    echo "---------------------"
+    echo " copying settings... "
+    echo "---------------------"
+
+    dconf load / <dconf-settings.ini
+    cp .gitconfig $HOME
 
     # d2 lang
     # https://github.com/terrastruct/d2#install
