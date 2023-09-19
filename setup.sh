@@ -14,9 +14,9 @@ if [ ! -f $HOME/.resume-script ]; then
     sudo add-apt-repository universe -y
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y build-essential ca-certificates curl file g++ git gnupg \
-        libbz2-dev libffi-dev liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev \
-        llvm make tk-dev xz-utils zlib1g-dev
+    sudo apt install -y build-essential ca-certificates curl file g++ git gnupg icu-devtools \
+        libbz2-dev libcurl4-openssl-dev libffi-dev liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev \
+        linux-headers-$(uname -r) llvm make tk-dev uuid-dev xz-utils zlib1g-dev
 
     # install asdf
     # https://asdf-vm.com/guide/getting-started.html
@@ -110,6 +110,16 @@ else
     asdf plugin-add sqlite
     asdf install sqlite latest
     asfd global sqlite latest
+
+    # install postgres
+    # https://github.com/cLupus/asdf-sqlite
+    echo ""
+    echo "-----------------------"
+    echo " installing postgres... "
+    echo "-----------------------"
+    asdf plugin-add postgres
+    asdf install postgres latest
+    asdf global postgres latest
 
     # install docker
     # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
