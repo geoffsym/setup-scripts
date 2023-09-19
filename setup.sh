@@ -61,7 +61,7 @@ else
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
     asdf install java latest:adoptopenjdk-20
     asdf global java latest:adoptopenjdk-20
-    . ~/.asdf/plugins/java/set-java-home.bash
+    echo ". ~/.asdf/plugins/java/set-java-home.bash" >>$HOME/.bashrc
 
     # install python
     # https://github.com/asdf-community/asdf-python
@@ -165,7 +165,7 @@ else
     cd $HOME
     curl -L https://aka.ms/gcm/linux-install-source.sh | sh
     git-credential-manager configure
-    export GCM_CREDENTIAL_STORE=gpg
+    git config --global credential.credentialStore gpg
 
     # copy settings
     echo ""
@@ -173,6 +173,13 @@ else
     echo " copying settings... "
     echo "---------------------"
 
-    dconf load / </media/sf_shared/dconf-settings.ini
-    cp /media/sf_shared/.gitconfig $HOME/.gitconfig
+    if [ ! -f /media/sf_shared/dconf-settings.ini ]; then
+        dconf load / </media/sf_shared/dconf-settings.ini
+    fi
+    if [ ! -f /media/sf_shared/.bashrc ]; then
+        cp /media/sf_shared/.bashrc $HOME/.bashrc
+    fi
+    if [ ! -f /media/sf_shared/.gitconfig ]; then
+        cp /media/sf_shared/.gitconfig $HOME/.gitconfig
+    fi
 fi
