@@ -5,6 +5,7 @@ script="bash $PWD/$0"
 # check if the reboot flag file exists.
 # We created this file before rebooting.
 if [ ! -f $HOME/.resume-script ]; then
+
     # install prerequisites
     echo ""
     echo "-----------------------------"
@@ -28,8 +29,9 @@ if [ ! -f $HOME/.resume-script ]; then
     git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.0
     echo '' >>$HOME/.bashrc
     echo '# enable asdf' >>$HOME/.bashrc
-    echo '. "$HOME/.asdf/asdf.sh"' >>$HOME/.bashrc
-    echo '. "$HOME/.asdf/completions/asdf.bash"' >>$HOME/.bashrc
+    echo 'source "$HOME/.asdf/asdf.sh"' >>$HOME/.bashrc
+    echo 'source "$HOME/.asdf/completions/asdf.bash"' >>$HOME/.bashrc
+    echo '' >>$HOME/.bashrc
 
     # add this script to bashrc so it gets triggered immediately after reboot
     echo "$script" >>$HOME/.bashrc
@@ -61,7 +63,9 @@ else
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
     asdf install java latest:adoptopenjdk-20
     asdf global java latest:adoptopenjdk-20
-    echo ". ~/.asdf/plugins/java/set-java-home.bash" >>$HOME/.bashrc
+    echo '# set JAVA_HOME' >>$HOME/.bashrc
+    echo 'source "$HOME/.asdf/plugins/java/set-java-home.bash"' >>$HOME/.bashrc
+    echo '' >>$HOME/.bashrc
 
     # install python
     # https://github.com/asdf-community/asdf-python
@@ -146,12 +150,22 @@ else
     echo "------------------------------"
 
     sudo apt install -y fonts-firacode net-tools
+
     asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
     asdf install poetry latest
+    asdf global poetry latest
+
     asdf plugin-add direnv
+    asdf install poetry latest
+    asdf global direnv latest
+    echo '# enable direnv' >>$HOME/.bashrc
     asdf direnv setup --shell bash --version latest
-    npm install --global nodemon npx
+    echo '' >>$HOME/.bashrc
+
+    npm install --global nodemon
+
     sudo snap install --classic code
+
     sudo snap install postman
 
     # d2 lang
@@ -182,4 +196,5 @@ else
     if [ ! -f /media/sf_shared/.gitconfig ]; then
         cp /media/sf_shared/.gitconfig $HOME/.gitconfig
     fi
+
 fi
