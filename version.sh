@@ -3,6 +3,9 @@
 echo "> asdf --version"
 asdf --version
 
+echo "> java --version"
+java --version
+
 echo "> python --version"
 python --version
 

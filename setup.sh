@@ -50,6 +50,17 @@ else
     # remove the temporary file that we created to check for reboot
     rm -f $HOME/.resume-script
 
+    #install java
+    # https://github.com/halcyon/asdf-java
+    echo ""
+    echo "----------------------"
+    echo " installing java... "
+    echo "----------------------"
+
+    asdf plugin-add java https://github.com/halcyon/asdf-java.git
+    asdf install java latest
+    asdf global java latest
+
     # install python
     # https://github.com/asdf-community/asdf-python
     echo ""
