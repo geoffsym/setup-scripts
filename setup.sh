@@ -14,8 +14,9 @@ if [ ! -f $HOME/.resume-script ]; then
     sudo add-apt-repository universe -y
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y build-essential ca-certificates curl g++ git gnupg libbz2-dev libffi-dev liblzma-dev libncursesw5-dev \
-        libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev llvm make tk-dev xz-utils zlib1g-dev
+    sudo apt install -y build-essential ca-certificates curl file g++ git gnupg \
+        libbz2-dev libffi-dev liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev \
+        llvm make tk-dev xz-utils zlib1g-dev
 
     # install asdf
     # https://asdf-vm.com/guide/getting-started.html
@@ -98,6 +99,17 @@ else
     sudo apt install -y mongodb-org
     sudo systemctl enable mongod
 
+    # install SQLite
+    # https://github.com/cLupus/asdf-sqlite
+    echo ""
+    echo "-----------------------"
+    echo " installing SQLite... "
+    echo "-----------------------"
+
+    asdf plugin-add sqlite
+    asdf install sqlite latest
+    asfd global sqlite latest
+
     # install docker
     # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
     # https://docs.docker.com/engine/install/linux-postinstall/
@@ -131,15 +143,6 @@ else
     sudo snap install --classic code
     sudo snap install postman
 
-    # copy settings
-    echo ""
-    echo "---------------------"
-    echo " copying settings... "
-    echo "---------------------"
-
-    dconf load / </media/sf_shared/dconf-settings.ini
-    cp /media/sf_shared/.gitconfig $HOME/.gitconfig
-
     # d2 lang
     # https://github.com/terrastruct/d2#install
     curl -fsSL https://d2lang.com/install.sh | sh -s --
@@ -151,4 +154,13 @@ else
     cd $HOME
     curl -L https://aka.ms/gcm/linux-install-source.sh | sh
     git-credential-manager configure
+
+    # copy settings
+    echo ""
+    echo "---------------------"
+    echo " copying settings... "
+    echo "---------------------"
+
+    dconf load / </media/sf_shared/dconf-settings.ini
+    cp /media/sf_shared/.gitconfig $HOME/.gitconfig
 fi
