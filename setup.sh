@@ -126,8 +126,8 @@ else
     echo " copying settings... "
     echo "---------------------"
 
-    dconf load / <dconf-settings.ini
-    cp .gitconfig $HOME
+    dconf load / </media/sf_shared/dconf-settings.ini
+    cp /media/sf_shared/.gitconfig $HOME/.gitconfig
 
     # d2 lang
     # https://github.com/terrastruct/d2#install

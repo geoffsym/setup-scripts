@@ -5,5 +5,5 @@ echo "---------------"
 echo " backing up... "
 echo "---------------"
 
-dconf dump / >dconf-settings.ini
-cp $HOME/.gitconfig .
+dconf dump / >/media/sf_shared/dconf-settings.ini
+cp $HOME/.gitconfig /media/sf_shared/.gitconfig
