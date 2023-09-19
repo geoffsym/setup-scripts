@@ -17,7 +17,7 @@ if [ ! -f $HOME/.resume-script ]; then
     sudo apt upgrade -y
     sudo apt install -y build-essential ca-certificates curl file g++ git gnupg icu-devtools \
         libbz2-dev libcurl4-openssl-dev libffi-dev liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev \
-        linux-headers-$(uname -r) llvm make tk-dev uuid-dev xz-utils zlib1g-dev
+        linux-headers-$(uname -r) llvm make pass tk-dev uuid-dev xz-utils zlib1g-dev
 
     # install asdf
     # https://asdf-vm.com/guide/getting-started.html
