@@ -162,7 +162,7 @@ else
     asdf direnv setup --shell bash --version latest
     echo '' >>$HOME/.bashrc
 
-    npm install --global npx nodemon serve
+    npm install --global nodemon serve
 
     sudo snap install --classic code
 
