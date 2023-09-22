@@ -190,13 +190,13 @@ else
     echo " copying settings... "
     echo "---------------------"
 
-    if [ ! -f /media/sf_shared/dconf-settings.ini ]; then
+    if [ -f /media/sf_shared/dconf-settings.ini ]; then
         dconf load / </media/sf_shared/dconf-settings.ini
     fi
-    if [ ! -f /media/sf_shared/.bashrc ]; then
+    if [ -f /media/sf_shared/.bashrc ]; then
         cp /media/sf_shared/.bashrc $HOME/.bashrc
     fi
-    if [ ! -f /media/sf_shared/.gitconfig ]; then
+    if [ -f /media/sf_shared/.gitconfig ]; then
         cp /media/sf_shared/.gitconfig $HOME/.gitconfig
     fi
 
