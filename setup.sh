@@ -156,7 +156,6 @@ else
     asdf global poetry latest
 
     asdf plugin-add direnv
-    asdf install poetry latest
     asdf global direnv latest
     echo '# enable direnv' >>$HOME/.bashrc
     asdf direnv setup --shell bash --version latest
