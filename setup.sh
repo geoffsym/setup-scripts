@@ -56,9 +56,9 @@ else
     #install java
     # https://github.com/halcyon/asdf-java
     echo ""
-    echo "----------------------"
+    echo "--------------------"
     echo " installing java... "
-    echo "----------------------"
+    echo "--------------------"
 
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
     asdf install java latest:adoptopenjdk-20
@@ -113,14 +113,15 @@ else
 
     asdf plugin-add sqlite
     asdf install sqlite latest
-    asfd global sqlite latest
+    asdf global sqlite latest
 
     # install postgres
     # https://github.com/cLupus/asdf-sqlite
     echo ""
-    echo "-----------------------"
+    echo "------------------------"
     echo " installing postgres... "
-    echo "-----------------------"
+    echo "------------------------"
+
     asdf plugin-add postgres
     asdf install postgres latest
     asdf global postgres latest
@@ -156,8 +157,6 @@ else
     asdf global poetry latest
 
     asdf plugin-add direnv
-    asdf global direnv latest
-    echo '# enable direnv' >>$HOME/.bashrc
     asdf direnv setup --shell bash --version latest
     echo '' >>$HOME/.bashrc
 
@@ -173,21 +172,11 @@ else
     export PATH=$HOME/.local/bin:$PATH
     export MANPATH=$HOME/.local/share/man:$MANPATH
 
-    # git credential manager
-    # https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#install-from-source-helper-script
-    cd $HOME
-    curl -L https://aka.ms/gcm/linux-install-source.sh | sh
-    git-credential-manager configure
-    git config --global credential.credentialStore gpg
-    gpg --gen-key
-    fingerprint=$(gpg --list-keys --with-colons | grep "pub" | cut -d':' -f5)
-    pass init $fingerprint
-
     # copy settings
     echo ""
-    echo "---------------------"
-    echo " copying settings... "
-    echo "---------------------"
+    echo "----------------------"
+    echo " restoring backups... "
+    echo "----------------------"
 
     if [ -f /media/sf_shared/dconf-settings.ini ]; then
         dconf load / </media/sf_shared/dconf-settings.ini
@@ -198,5 +187,19 @@ else
     if [ -f /media/sf_shared/.gitconfig ]; then
         cp /media/sf_shared/.gitconfig $HOME/.gitconfig
     fi
+    if [ -f /media/sf_shared/repos ]; then
+        cp -r /media/sf_shared/repos $HOME/repos
+    fi
+
+    # install this after restoring .gitconfig
+    # git credential manager
+    # https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#install-from-source-helper-script
+    cd $HOME
+    curl -L https://aka.ms/gcm/linux-install-source.sh | sh
+    git-credential-manager configure
+    git config --global credential.credentialStore gpg
+    gpg --gen-key
+    fingerprint=$(gpg --list-keys --with-colons | grep "pub" | cut -d':' -f5)
+    pass init $fingerprint
 
 fi
